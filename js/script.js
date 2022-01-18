@@ -1,8 +1,8 @@
 //# Functions
-const createClassedCell = (cellClass) => {
-	const cell = document.createElement('div');
-	cell.className = cellClass;
-	return cell;
+const createClassedElement = (elementClass) => {
+	const element = document.createElement('div');
+	element.className = elementClass;
+	return element;
 }
 
 const toggleClassOnClick = (target, classToToggle) => {
@@ -64,7 +64,7 @@ start.addEventListener('click', function () {
 		} else {
 			if (difficulty === 1) {
 				for (i = 0; i < totalOne; i++) {
-					const cell = createClassedCell(classOne);
+					const cell = createClassedElement(classOne);
 					grid.appendChild(cell);
 					cell.innerText = i + 1;
 					playToggle = true;
@@ -72,7 +72,7 @@ start.addEventListener('click', function () {
 				}
 			} else if (difficulty === 2) {
 				for (i = 0; i < totalTwo; i++) {
-					const cell = createClassedCell(classTwo);
+					const cell = createClassedElement(classTwo);
 					grid.appendChild(cell);
 					cell.innerText = i + 1;
 					playToggle = true;
@@ -80,7 +80,7 @@ start.addEventListener('click', function () {
 				}
 			} else if (difficulty === 3) {
 				for (i = 0; i < totalThree; i++) {
-					const cell = createClassedCell(classThree);
+					const cell = createClassedElement(classThree);
 					grid.appendChild(cell);
 					cell.innerText = i + 1;
 					playToggle = true;
