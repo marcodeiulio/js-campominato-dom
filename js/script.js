@@ -19,8 +19,7 @@ const toggleClass = (target, classToToggle) => {
 	}
 }
 
-//# Program
-
+//# Program variables
 const cellsOne = 10;
 const cellsTwo = 9;
 const cellsThree = 7;
@@ -51,6 +50,7 @@ const reset = document.getElementById('reset');
 
 let playToggle = false;
 
+//# Program start
 start.addEventListener('click', function () {
 
 	const difficulty = parseInt(document.getElementById('difficulty').value);
@@ -63,7 +63,7 @@ start.addEventListener('click', function () {
 			alert('Please, choose a difficulty.');
 		} else {
 			if (difficulty === 1) {
-				for (i = 0; i < totalOne; i++) {
+				for (let i = 0; i < totalOne; i++) {
 					const cell = createClassedElement(classOne);
 					grid.appendChild(cell);
 					cell.innerText = i + 1;
@@ -71,7 +71,7 @@ start.addEventListener('click', function () {
 					toggleClassOnClick(cell, classActive);
 				}
 			} else if (difficulty === 2) {
-				for (i = 0; i < totalTwo; i++) {
+				for (let i = 0; i < totalTwo; i++) {
 					const cell = createClassedElement(classTwo);
 					grid.appendChild(cell);
 					cell.innerText = i + 1;
@@ -79,7 +79,7 @@ start.addEventListener('click', function () {
 					toggleClassOnClick(cell, classActive);
 				}
 			} else if (difficulty === 3) {
-				for (i = 0; i < totalThree; i++) {
+				for (let i = 0; i < totalThree; i++) {
 					const cell = createClassedElement(classThree);
 					grid.appendChild(cell);
 					cell.innerText = i + 1;
