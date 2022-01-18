@@ -1,0 +1,109 @@
+/*# Utilities */
+.active {
+	background-color: #dddd1d;
+}
+
+.remove {
+	display: none;
+}
+
+/*# Style */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+	background-color: #10bbef;
+}
+
+header {
+	background-color: #f7b6d4;
+	height: 70px;
+	padding: 0 30px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header h1 {
+	display: inline-block;
+}
+
+header select {
+	height: 40px;
+}
+
+header label {
+	margin-right: 10px;
+	font-size: 1.1em;
+}
+
+button, select {
+	font-size: 1.1em;
+}
+
+.container {
+	width: 100%;
+	max-width: 1080px;
+	color: black;
+	margin: 0 auto;
+}
+
+#start {
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	display: block;
+	padding: 10px 30px;
+}
+
+#reset {
+	margin: 0 auto;
+	display: block;
+	padding: 10px 10px;
+}
+
+#grid {
+	font-weight: 500;
+	font-size: 1.3em;
+	margin: 10px auto;
+	width: 580px;
+	height: 580px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	border: 1px solid black;
+}
+
+#grid .cell-one {
+	border: 1px solid black;
+	width: calc(100% / 10);
+	height: calc(100% / 10);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+#grid .cell-two {
+	border: 1px solid black;
+	width: calc(100% / 9);
+	height: calc(100% / 9);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+#grid .cell-three {
+	border: 1px solid black;
+	width: calc(100% / 7);
+	height: calc(100% / 7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}

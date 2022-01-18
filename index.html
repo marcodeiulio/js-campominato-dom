@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="icon" href="#">
+	<title>Minesweeper Grid</title>
+</head>
+
+<body>
+	<header>
+		<h1>Minesweeper</h1>
+		<span>
+			<label for="difficulty">Choose difficulty</label>
+			<select name="difficulty" id="difficulty">
+				<option value="0">Choose...</option>
+				<option value="1">Easy</option>
+				<option value="2">Normal</option>
+				<option value="3">Hard</option>
+			</select>
+		</span>
+	</header>
+	<main>
+		<div class="container">
+			<button id="start">Play</button>
+			<button id="reset">Reset</button>
+			<section id="grid">
+				<h1 id="spotlight">Choose a difficulty and press Play</h1>
+			</section>
+		</div>
+	</main>
+	<script src="./js/script.js"></script>
+</body>
+
+</html>
