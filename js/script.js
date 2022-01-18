@@ -19,6 +19,20 @@ const toggleClass = (target, classToToggle) => {
 	}
 }
 
+const randomNumber = (min, max) => {
+	const randNum = Math.floor(Math.random() * max - min + 1) + min;
+	return randNum;
+}
+
+const createBomb = (maxNumber) => {
+	while (bombs.length < bombsNumber) {
+		const bomb = randomNumber(1, maxNumber);
+		if (!bombs.includes(bomb)) {
+			bombs.push(bomb);
+		}
+	}
+}
+
 //# Program variables
 const cellsOne = 10;
 const cellsTwo = 9;
@@ -35,6 +49,9 @@ const totalThree = cellsThree * rowsThree;
 const classOne = 'cell-one';
 const classTwo = 'cell-two';
 const classThree = 'cell-three';
+
+const bombsNumber = 16;
+const bombs = [];
 
 const classActive = 'active';
 
