@@ -1,5 +1,5 @@
 //# Functions
-const createClassedElement = (elementClass) => {
+const createClassedDiv = (elementClass) => {
 	const element = document.createElement('div');
 	element.className = elementClass;
 	return element;
@@ -24,9 +24,9 @@ const randomNumber = (min, max) => {
 	return randNum;
 }
 
-const createBomb = (maxNumber) => {
+const createBombs = (totalCells) => {
 	while (bombs.length < bombsNumber) {
-		const bomb = randomNumber(1, maxNumber);
+		const bomb = randomNumber(1, totalCells);
 		if (!bombs.includes(bomb)) {
 			bombs.push(bomb);
 		}
@@ -75,13 +75,14 @@ start.addEventListener('click', function () {
 
 	if (playToggle) {
 		alert('Please, press the Reset button first.')
+		//TODO Resetta la griglia e cambia il nome del bottone in RESET
 	} else {
 		if (difficulty === 0) {
 			alert('Please, choose a difficulty.');
 		} else {
 			if (difficulty === 1) {
 				for (let i = 0; i < totalOne; i++) {
-					const cell = createClassedElement(classOne);
+					const cell = createClassedDiv(classOne);
 					grid.appendChild(cell);
 					cell.innerText = i + 1;
 					playToggle = true;
@@ -89,7 +90,7 @@ start.addEventListener('click', function () {
 				}
 			} else if (difficulty === 2) {
 				for (let i = 0; i < totalTwo; i++) {
-					const cell = createClassedElement(classTwo);
+					const cell = createClassedDiv(classTwo);
 					grid.appendChild(cell);
 					cell.innerText = i + 1;
 					playToggle = true;
@@ -97,7 +98,7 @@ start.addEventListener('click', function () {
 				}
 			} else if (difficulty === 3) {
 				for (let i = 0; i < totalThree; i++) {
-					const cell = createClassedElement(classThree);
+					const cell = createClassedDiv(classThree);
 					grid.appendChild(cell);
 					cell.innerText = i + 1;
 					playToggle = true;
