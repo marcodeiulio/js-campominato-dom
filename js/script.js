@@ -17,7 +17,6 @@ const randomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + mi
 function start() {
 	button.innerText = 'RESTART';
 	grid.innerHTML = '';
-	resultMessage.innerHTML = '';
 
 	switch (select.value) {
 		case "2":
@@ -78,6 +77,7 @@ function start() {
 			allCells[i].removeEventListener('click', onCellClick);
 		}
 		showBombs(bombs);
+		resultMessage.innerHTML = '';
 		const message = document.createElement('h2');
 		message.className = 'message';
 		const messageText = !isLoss ? `You won with a score of ${attempts}!` : `Sorry, you lost with a score of ${attempts}!`
