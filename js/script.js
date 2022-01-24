@@ -24,12 +24,22 @@ const randomNumber = (min, max) => {
 	return randNum;
 }
 
-const createBombs = (totalCells) => {
+const generateBombs = (totalCells) => {
 	while (bombs.length < bombsNumber) {
 		const bomb = randomNumber(1, totalCells);
 		if (!bombs.includes(bomb)) {
 			bombs.push(bomb);
 		}
+	}
+}
+
+const generateGrid = (total, cellClass) => {
+	for (let i = 0; i < totalOne; i++) {
+		const cell = createClassedDiv(classOne);
+		grid.appendChild(cell);
+		cell.innerText = i + 1;
+		playToggle = true;
+		toggleClassOnClick(cell, classActive);
 	}
 }
 
@@ -81,29 +91,11 @@ start.addEventListener('click', function () {
 			alert('Please, choose a difficulty.');
 		} else {
 			if (difficulty === 1) {
-				for (let i = 0; i < totalOne; i++) {
-					const cell = createClassedDiv(classOne);
-					grid.appendChild(cell);
-					cell.innerText = i + 1;
-					playToggle = true;
-					toggleClassOnClick(cell, classActive);
-				}
+				generateGrid(totalOne, cellsOne);
 			} else if (difficulty === 2) {
-				for (let i = 0; i < totalTwo; i++) {
-					const cell = createClassedDiv(classTwo);
-					grid.appendChild(cell);
-					cell.innerText = i + 1;
-					playToggle = true;
-					toggleClassOnClick(cell, classActive);
-				}
+				generateGrid(totalTwo, cellsTwo);
 			} else if (difficulty === 3) {
-				for (let i = 0; i < totalThree; i++) {
-					const cell = createClassedDiv(classThree);
-					grid.appendChild(cell);
-					cell.innerText = i + 1;
-					playToggle = true;
-					toggleClassOnClick(cell, classActive);
-				}
+				generateGrid(totalThree, cellsThree);
 			}
 			toggleClass(spotlight, classRemove);
 		}
