@@ -1,107 +1,104 @@
-//# Functions
-const createClassedDiv = (elementClass) => {
-	const element = document.createElement('div');
-	element.className = elementClass;
-	return element;
-}
+//# Utilities
+//* Variables
+const select = document.getElementById("difficulty");
+const grid = document.getElementById("grid");
+const button = document.getElementById("play");
+const resultMessage = document.getElementById('result-message');
+const totalBombs = 16;
+let columns;
+let totalCells = columns * columns;
+let attempts = 0;
+let maxAttempts = 0;
 
-const toggleClassOnClick = (target, classToToggle) => {
-	target.addEventListener('click', function () {
-		target.classList.toggle(classToToggle);
-	});
-}
-
-const toggleClass = (target, classToToggle) => {
-	if (target.classList.contains(classToToggle)) {
-		target.classList.remove(classToToggle);
-	} else if (!target.classList.contains(classToToggle)) {
-		target.classList.add(classToToggle);
-	}
-}
-
-const randomNumber = (min, max) => {
-	const randNum = Math.floor(Math.random() * max - min + 1) + min;
-	return randNum;
-}
-
-const generateBombs = (totalCells) => {
-	while (bombs.length < bombsNumber) {
-		const bomb = randomNumber(1, totalCells);
-		if (!bombs.includes(bomb)) {
-			bombs.push(bomb);
-		}
-	}
-}
-
-const generateGrid = (total, cellClass) => {
-	for (let i = 0; i < totalOne; i++) {
-		const cell = createClassedDiv(classOne);
-		grid.appendChild(cell);
-		cell.innerText = i + 1;
-		playToggle = true;
-		toggleClassOnClick(cell, classActive);
-	}
-}
-
-//# Program variables
-const cellsOne = 10;
-const cellsTwo = 9;
-const cellsThree = 7;
-
-const rowsOne = 10;
-const rowsTwo = 9;
-const rowsThree = 7;
-
-const totalOne = cellsOne * rowsOne;
-const totalTwo = cellsTwo * rowsTwo;
-const totalThree = cellsThree * rowsThree;
-
-const classOne = 'cell-one';
-const classTwo = 'cell-two';
-const classThree = 'cell-three';
-
-const bombsNumber = 16;
-const bombs = [];
-
-const classActive = 'active';
-
-const classRemove = 'remove';
-
-const grid = document.getElementById('grid');
-
-const spotlight = document.getElementById('spotlight');
-
-const start = document.getElementById('start');
-
-const reset = document.getElementById('reset');
-
-let playToggle = false;
+//* Functions
+const randomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 //# Program start
-start.addEventListener('click', function () {
+function start() {
+	button.innerText = 'RESTART';
+	grid.innerHTML = '';
+	resultMessage.innerHTML = '';
 
-	const difficulty = parseInt(document.getElementById('difficulty').value);
-	console.log('Difficulty chosen: ' + difficulty);
+	switch (select.value) {
+		case "2":
+			columns = 9;
+			break;
+		case "3":
+			columns = 7;
+			break;
+		default:
+			columns = 10;
+			break;
+	}
 
-	if (playToggle) {
-		alert('Please, press the Reset button first.')
-		//TODO Resetta la griglia e cambia il nome del bottone in RESET
-	} else {
-		if (difficulty === 0) {
-			alert('Please, choose a difficulty.');
-		} else {
-			if (difficulty === 1) {
-				generateGrid(totalOne, cellsOne);
-			} else if (difficulty === 2) {
-				generateGrid(totalTwo, cellsTwo);
-			} else if (difficulty === 3) {
-				generateGrid(totalThree, cellsThree);
-			}
-			toggleClass(spotlight, classRemove);
+	totalCells = columns * columns;
+	maxAttempts = totalCells - totalBombs;
+
+	function generateBombs(totalBombs, totalNumber) {
+		const bombs = [];
+		while (bombs.length < totalBombs) {
+			const randNumber = randomNum(1, totalNumber);
+			if (!bombs.includes(randNumber)) bombs.push(randNumber);
+		}
+		return bombs;
+	}
+
+	function generateGrid(totalCells, cellsPerRow, bombs) {
+		for (let i = 1; i <= totalCells; i++) {
+			const cell = createCell(i, cellsPerRow);
+			cell.addEventListener('click', (event) => onCellClick(event.target, bombs, i));
+			grid.appendChild(cell);
 		}
 	}
-});
 
-reset.addEventListener('click', function () {
-	location.reload();
-});
+	function createCell(cellId, cellsPerRow) {
+		const cell = document.createElement("div");
+		cell.className = "cell";
+		cell.innerText = cellId;
+		const width = `calc(100% / ${cellsPerRow})`;
+		cell.style.height = width;
+		cell.style.width = width;
+		return cell;
+	}
+
+	function onCellClick(clickedCell, bombs, number) {
+		clickedCell.removeEventListener("click", onCellClick);
+
+		if (bombs.includes(number)) gameOver(bombs, attempts, true);
+		else {
+			clickedCell.classList.add("safe")
+			attempts++;
+			if (attempts === maxAttempts) gameOver(bombs, attempts, false);
+		}
+	}
+
+	function gameOver(bombs, attempts, isLoss) {
+		const allCells = grid.querySelectorAll('.cell');
+		for (let i = 0; i < allCells.length; i++) {
+			allCells[i].removeEventListener('click', onCellClick);
+		}
+		showBombs(bombs);
+		const message = document.createElement('h2');
+		message.className = 'message';
+		const messageText = !isLoss ? `You won with a score of ${attempts}!` : `Sorry, you lost with a score of ${attempts}!`
+		message.innerText = messageText;
+		resultMessage.appendChild(message);
+	}
+
+	function showBombs(bombs) {
+		const cells = document.querySelectorAll('.cell');
+		for (let i = 0; i < totalCells; i++) {
+			const cell = cells[i];
+			const cellId = parseInt(cell.innerText);
+			if (bombs.includes(cellId)) cell.classList.add('bomb');
+		}
+	}
+
+	//# Execution
+	const bombs = generateBombs(totalBombs, totalCells)
+	console.log(bombs);
+
+	generateGrid(totalCells, columns, bombs);
+}
+
+button.addEventListener("click", () => start());

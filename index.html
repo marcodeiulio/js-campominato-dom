@@ -16,7 +16,6 @@
 		<span>
 			<label for="difficulty">Choose difficulty</label>
 			<select name="difficulty" id="difficulty">
-				<option value="0">Choose...</option>
 				<option value="1">Easy</option>
 				<option value="2">Normal</option>
 				<option value="3">Hard</option>
@@ -24,15 +23,13 @@
 		</span>
 	</header>
 	<main>
-		<div class="container">
-			<button id="start">Play</button>
-			<button id="reset">Reset</button>
-			<section id="grid">
-				<h1 id="spotlight">Choose a difficulty and press Play</h1>
-			</section>
-		</div>
+		<section class="container">
+			<span id="btn"><button id="play">START</button></span>
+			<h1 id="result-message"></h1>
+			<div id="grid"></div>
+		</section>
+		<script src="./js/script.js"></script>
 	</main>
-	<script src="./js/script.js"></script>
 </body>
 
 </html>
